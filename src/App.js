@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import Task from './components/Tasks.js'
+import Header from './components/Header.js';
 import './App.css';
+import { Fragment, useState } from 'react'
+import styled, { createGlobalStyle } from 'styled-components';
 
 function App() {
+  const [tasks, setTasks] = useState([
+    {title: 'Teste1', desc:'isso é um teste', status:'todo'},
+    {title: 'Teste2', desc:'isso é um teste', status:'todo'},
+    {title: 'Teste3', desc:'isso é um teste', status:'doing'},
+    {title: 'Teste4', desc:'isso é um teste', status:'doing'},
+    {title: 'Teste5', desc:'isso é um teste', status:'doing'},
+    {title: 'Teste6', desc:'isso é um teste', status:'done'},
+    {title: 'Teste7', desc:'isso é um testedsdadsdadasaaaa', status:'done'}
+  ]);
+  const [seenModal] = useState([
+    {seen:false}
+  ])
+
+  const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #c1c8e4;
+  }
+`;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+    <GlobalStyle/>
+      <Header/>
+      <Task tasks={tasks}/>
+    </Fragment>
   );
 }
 
